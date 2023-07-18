@@ -13,6 +13,13 @@ jobs:
     steps:
       - name: Check out source code
         uses: actions/checkout@v3
+      - name: Saves RedHat IT Root CA to a file
+        shell: bash
+        run: |
+            mkdir -p pki/certs
+            cat > pki/certs/RedHat-IT-Root-CA-Bundle.pem <<CA
+            ${{ secrets.REDHAT_IT_ROOT_CA_BUNDLE }}
+            CA
       - name: Login to Quay
         uses: docker/login-action@v2
         with:

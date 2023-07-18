@@ -21,8 +21,7 @@ RUN dnf -y --setopt=tsflags=nodocs install \
     skopeo \
     && dnf clean all
 
-# Adds Red Hat IT Root CAs
-ADD https://certs.corp.redhat.com/certs/2015-IT-Root-CA.pem https://certs.corp.redhat.com/certs/2022-IT-Root-CA.pem /etc/pki/ca-trust/source/anchors/
+ADD pki/certs/RedHat-IT-Root-CA-Bundle.pem /etc/pki/ca-trust/source/anchors/
 RUN update-ca-trust
 
 COPY pyxis /home/pyxis
